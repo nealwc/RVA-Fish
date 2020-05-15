@@ -47,7 +47,14 @@ module.exports = function(app) {
       res.json({
         email: req.user.email,
         id: req.user.id
+        // this will need to be added to in order to use this to see full user profiles
+        
       });
     }
   });
-};
+
+  //need to create an api-route that sends user data for a person via search
+  //will need sequalize functions
+
+
+};  //end of export data
