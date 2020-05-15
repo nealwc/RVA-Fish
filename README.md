@@ -17,3 +17,8 @@
 + added {force: true} within sync on server so that database drops existing tables when we edit them
 - needed to do this in order to add attribute columns to user table
 - will need to remove this when we enter production
+* *I think sequelize is dropping the database twice because it is running out schema file!*
+
+
+* sequelize has not been added to project. I required it in fish model... but it needs additional implementation
+- where?
