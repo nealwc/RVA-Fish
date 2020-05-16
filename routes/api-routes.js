@@ -64,10 +64,14 @@ module.exports = function (app) {
       });
 
     });
+
   app.get("/api/comments",
-    db.Comment.findAll({}).then(function (results) {
-      res.json(result);
-    })
+    function (req, res) {
+      db.Comment.findAll({}).then(function (results) {
+        res.json(results);
+      })
+    }
   );
+
 
 };  //end of export data

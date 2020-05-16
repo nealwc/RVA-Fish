@@ -3,7 +3,7 @@ let bcrypt = require("bcryptjs");
 let Sequelize = require("sequelize");
 // Creating our User model
 module.exports = function (sequelize, DataTypes) {
-    var Comment = sequelize.define("Comment", {
+    let Comment = sequelize.define("Comment", {
 
         comment: {
             type: DataTypes.STRING
