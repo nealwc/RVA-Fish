@@ -2,11 +2,3 @@ form.signup,
 form.login {
   margin-top: 50px;
 }
-
-.jumbotron {
-  background-image: url(http://www.travelthewholeworld.com/wp-content/uploads/2014/01/Virginia-Richmond-James-River.jpg);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /* background-size: cover; */
-  background-size: 100% 100%;
-}
