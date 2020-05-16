@@ -1,16 +1,18 @@
 {
   "development": {
-    "username": "n9gjvypvys8dhsui",
-    "password": "g4ti0lxvp2kqv69m",
-    "database": "jifxq4ztyyf5r08n",
-    "host": "pqxt96p7ysz6rn1f.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "username": "root",
+    "password": "",
+    "database": "fish_db",
+    "host": "127.0.0.1",
+    "port": 3306,
     "dialect": "mysql"
   },
   "test": {
-    "username": "n9gjvypvys8dhsui",
-    "password": "g4ti0lxvp2kqv69m",
-    "database": "jifxq4ztyyf5r08n",
-    "host": "pqxt96p7ysz6rn1f.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "port": 3306,
     "dialect": "mysql"
   },
   "production": {
