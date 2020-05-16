@@ -62,8 +62,12 @@ module.exports = function (app) {
       db.Fish.findAll({}).then(function (results) {
         res.json(results);
       });
- 
-    });
 
+    });
+  app.get("/api/comments",
+    db.Comment.findAll({}).then(function (results) {
+      res.json(result);
+    })
+  );
 
 };  //end of export data
