@@ -5,13 +5,19 @@ let Sequelize = require("sequelize");
 module.exports = function (sequelize, DataTypes) {
     let Comment = sequelize.define("Comment", {
 
+        title: {
+            type: DataTypes.STRING
+        },
         comment: {
             type: DataTypes.STRING
         },
         user_id: {
             type: DataTypes.INTEGER
             //this should be a foreign key... do I need to do something special?
-        }
+        },
+        category: {
+            type: DataTypes.STRING
+        },
 
     });
     return Comment;
