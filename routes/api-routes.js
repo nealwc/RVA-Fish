@@ -58,12 +58,145 @@ module.exports = function (app) {
   //will need sequalize functions
   app.get("/api/all-fish",
     function (req, res) {
-      //this should send an array of all of table fishes
-      db.Fish.findAll({}).then(function (results) {
-        res.json(results);
-      });
- 
+      if (!req.user) {
+        // The user is not logged in, send back an empty object
+        res.json({});
+      } else {
+        //this should send an array of all of table fishes
+        db.Fish.findAll({}).then(function (results) {
+          res.json(results);
+        });
+      }
     });
+
+  app.get("/api/comments",  //gets all comments as an array... json data?
+    function (req, res) {
+      if (!req.user) {
+        // The user is not logged in, send back an empty object
+        res.json({});
+      } else {
+        db.Comment.findAll({}).then(function (results) {
+          res.json(results);
+        })
+      }
+    }
+  );
+
+
+  app.get("/api/users",  //gets all users as an array... 
+    function (req, res) {
+      if (!req.user) {
+        // The user is not logged in, send back an empty object
+      } else {
+        db.User.findAll({ attributes: ['id', 'email',] }).then(function (results) {
+          res.json(results);
+        })
+      }
+    }
+  );
+
+  // Search Users!
+  app.get("/api/users/:id",  //works!
+    function (req, res) {
+      if (!req.user) {
+      } else {
+
+        idVar = req.params.id;
+        db.User.findAll({
+          attributes: ['id', 'email'],
+          where: {
+            id: idVar
+          }
+        }).then(function (results) {
+          res.json(results);
+        })
+      }
+    }
+  );
+  // search comments      NOT TESted (need some comments before can test)
+  app.get("/api/comments/:id",
+    function (req, res) {
+      if (!req.user) {
+      } else {
+
+        idVar = req.params.id;
+        db.Comment.findAll({
+          attributes: ['id', 'title', 'comment', ['user_id', 'user'], 'category'],
+          //need to make this a join later - should show user's name instead of user id
+          where: {
+            id: idVar
+          }
+        }).then(function (results) {
+          res.json(results);
+        })
+      }
+    }
+  );
+  // search fish    not tested, need fish to test
+  app.get("/api/fish/:id",
+    function (req, res) {
+      if (!req.user) {
+      } else {
+
+        idVar = req.params.id;
+        db.Fish.findAll({
+          attributes: ['id', 'email'],
+          where: {
+            id: idVar
+          }
+        }).then(function (results) {
+          res.json(results);
+        })
+      }
+    }
+  );
+
+
+  // POSTS
+
+  app.post("/api/comments",  //gets all comments as an array... json data?
+    function (req, res) {
+      if (!req.user) {
+        // The user is not logged in, send back an empty object
+        res.json({});
+      } else {
+        db.Comment.findAll({}).then(function (results) {
+          res.json(results);
+        })
+      }
+    }
+  );  //not tested
+
+// NEED fish post... not tested yet
+
+app.post("/api/fish",  //gets all comments as an array... json data?
+function (req, res) {
+  if (!req.user) {
+    // The user is not logged in, send back an empty object
+    res.json({});
+  } else {
+    db.Comment.findAll({}).then(function (results) {
+      res.json(results);
+    })
+  }
+}
+);  //not tested
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 };  //end of export data
+
+
+// Note that API calls for people not logged in return empty arrays- if this works...
+// current issue; no response (at all) if user not logged in.. this also means cannot test posts via postman...
