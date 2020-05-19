@@ -60,7 +60,7 @@ module.exports = function (app) {
 
   //need to create an api-route that sends user data for a person via search
   //will need sequalize functions
-  app.get("/api/all-fish",
+  app.get("/api/fish",
   isAuthenticated,
     function (req, res) {
       if (!req.user) {
@@ -149,7 +149,7 @@ module.exports = function (app) {
 
         idVar = req.params.id;
         db.Fish.findAll({
-          attributes: ['id', 'email'],
+          attributes: ['id', 'location', 'length', 'species', 'comment'],
           where: {
             id: idVar
           }
