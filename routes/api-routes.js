@@ -3,6 +3,8 @@ var db = require("../models");
 var passport = require("../config/passport");
 // let sequelize = require("sequelize"); //dont need this here?
 
+var isAuthenticated = require("../config/middleware/isAuthenticated");
+
 module.exports = function (app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
@@ -38,7 +40,9 @@ module.exports = function (app) {
   });
 
   // Route for getting some data about our user to be used client side
-  app.get("/api/user_data", function (req, res) {
+  app.get("/api/user_data", 
+  isAuthenticated,
+  function (req, res) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});
@@ -57,6 +61,7 @@ module.exports = function (app) {
   //need to create an api-route that sends user data for a person via search
   //will need sequalize functions
   app.get("/api/all-fish",
+  isAuthenticated,
     function (req, res) {
       if (!req.user) {
         // The user is not logged in, send back an empty object
@@ -70,6 +75,7 @@ module.exports = function (app) {
     });
 
   app.get("/api/comments",  //gets all comments as an array... json data?
+  isAuthenticated,
     function (req, res) {
       if (!req.user) {
         // The user is not logged in, send back an empty object
@@ -84,6 +90,7 @@ module.exports = function (app) {
 
 
   app.get("/api/users",  //gets all users as an array... 
+  isAuthenticated,
     function (req, res) {
       if (!req.user) {
         // The user is not logged in, send back an empty object
@@ -115,6 +122,7 @@ module.exports = function (app) {
   );
   // search comments      NOT TESted (need some comments before can test)
   app.get("/api/comments/:id",
+  isAuthenticated,
     function (req, res) {
       if (!req.user) {
       } else {
@@ -134,6 +142,7 @@ module.exports = function (app) {
   );
   // search fish    not tested, need fish to test
   app.get("/api/fish/:id",
+  isAuthenticated,
     function (req, res) {
       if (!req.user) {
       } else {
@@ -200,3 +209,5 @@ function (req, res) {
 
 // Note that API calls for people not logged in return empty arrays- if this works...
 // current issue; no response (at all) if user not logged in.. this also means cannot test posts via postman...
+// api gets now return user to login is not logged in
+// post functions do not
