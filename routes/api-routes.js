@@ -72,6 +72,10 @@ module.exports = function (app) {
       })
     }
   );
+//users table get
+
+//post function function for fishes and comments?
+
 
 
 };  //end of export data
