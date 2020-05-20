@@ -17,7 +17,7 @@ form.login {
 
 body {
   background-image: url(http://www.srmfre.com/wp-content/uploads/2017/12/10-things-that-you-should-know-about-the-James-River.jpg);
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 #Title {
@@ -27,6 +27,7 @@ body {
 }
 
 #searchbutt {
-  margin-top: 50px;
-  
+  position: absolute;
+  top: 50px;
+  right: 75px;
 }
