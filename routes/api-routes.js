@@ -56,7 +56,10 @@ module.exports = function (app) {
         // The user is not logged in, send back an empty object
         res.json({});
       } else {
-        db.Comment.findAll({}).then(function (results) {
+        db.Comment.findAll({
+          // order: ['Created_At', 'DESC']
+          // https://sequelize.org/master/manual/model-querying-basics.html
+        }).then(function (results) {
           res.json(results);
         })
       }
@@ -104,7 +107,7 @@ module.exports = function (app) {
 
         idVar = req.params.id;
         db.Comment.findAll({
-          attributes: ['id', 'title', 'comment', ['user_id', 'user']],
+          attributes: ['id', 'title', 'comment', ['UserId', 'user']],
           //need to make this a join later - should show user's name instead of user id
           where: {
             id: idVar
@@ -136,7 +139,53 @@ module.exports = function (app) {
   );
 
 
-  // POSTS
+  //Should we have a search fish and search comments by user? name or UserId?
+  //search by category
+  // app.get("/api/comments-cat/:id",
+  //   isAuthenticated,
+  //   function (req, res) {
+  //     if (!req.user) {
+  //     } else {
+
+  //       idVar = req.params.id;
+  //       db.Comment.findAll({
+  //         attributes: ['id', 'title', 'comment', ['UserId', 'user']],
+  //         //need to make this a join later - should show user's name instead of user id
+  //         //will foeign key break this?
+  //         where: {
+  //           : idVar
+  //         }
+  //       }).then(function (results) {
+  //         res.json(results);
+  //       })
+  //     }
+  //   }
+  // );
+  // search fish    not tested, need fish to test
+
+  // search by user name?
+  // app.get("/api/fish/:id",
+  //   isAuthenticated,
+  //   function (req, res) {
+  //     if (!req.user) {
+  //     } else {
+
+  //       idVar = req.params.id;
+  //       db.Fish.findAll({
+  //         attributes: ['id', 'location', 'length', 'species', 'comment'],
+  //         where: {
+  //           id: idVar
+  //         }
+  //       }).then(function (results) {
+  //         res.json(results);
+  //       })
+  //     }
+  //   }
+  // );
+
+
+
+  // POSTS  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   app.post("/api/comments",  //gets all comments as an array... json data?
     isAuthenticated,  //can I put this here?
@@ -170,23 +219,23 @@ module.exports = function (app) {
       let myLength = req.body.length;
       let mySpecies = req.body.species;
       let myComment = req.body.comment;
-      let myUser = req.body.User_id
+      let myUser = req.body.UserId
       // if (!req.user) {
       //   // The user is not logged in, send back an empty object
       //   res.json({});
       // } else {
-        db.Fish.create({
-          location: myLocation,
-          length: myLength,
-          species: mySpecies,
-          comment: myComment,
-          //user id...
+      db.Fish.create({
+        location: myLocation,
+        length: myLength,
+        species: mySpecies,
+        comment: myComment,
+        //user id...
 
-        }).then(function (results) {
-          console.log("fish posted");
-          res.redirect(307, "/test");
-        })
-      }
+      }).then(function (results) {
+        console.log("fish posted");
+        res.redirect(307, "/test");
+      })
+    }
     // }
   );  //not tested
 

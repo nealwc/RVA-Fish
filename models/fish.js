@@ -21,12 +21,20 @@ module.exports = function (sequelize, DataTypes) {
         comment: {
             type: DataTypes.STRING
         }
-        
 
-       
-        
     });
-return Fish;
+
+    Fish.associate = function (models) {
+
+        Fish.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
+
+
+    return Fish;
 
 
 
