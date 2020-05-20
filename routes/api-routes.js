@@ -18,10 +18,7 @@ module.exports = function (app) {
   app.get("/api/user_data",
     isAuthenticated,
     function (req, res) {
-      if (!req.user) {
-        // The user is not logged in, send back an empty object
-        res.json({});
-      } else {
+
         // Otherwise send back the user's email and id
         // Sending back a password, even a hashed password, isn't a good idea
         res.json({
@@ -30,7 +27,6 @@ module.exports = function (app) {
           // this will need to be added to in order to use this to see full user profiles
 
         });
-      }
     });
 
   //need to create an api-route that sends user data for a person via search
@@ -38,24 +34,15 @@ module.exports = function (app) {
   app.get("/api/fish",
     isAuthenticated,
     function (req, res) {
-      if (!req.user) {
-        // The user is not logged in, send back an empty object
-        res.json({});
-      } else {
         //this should send an array of all of table fishes
         db.Fish.findAll({}).then(function (results) {
           res.json(results);
         });
-      }
     });
 
   app.get("/api/comments",  //gets all comments as an array... json data?
     isAuthenticated,
     function (req, res) {
-      if (!req.user) {
-        // The user is not logged in, send back an empty object
-        res.json({});
-      } else {
         db.Comment.findAll({
           // order: ['Created_At', 'DESC']
           // https://sequelize.org/master/manual/model-querying-basics.html
@@ -63,29 +50,21 @@ module.exports = function (app) {
           res.json(results);
         })
       }
-    }
   );
 
 
   app.get("/api/users",  //gets all users as an array... 
     isAuthenticated,
     function (req, res) {
-      if (!req.user) {
-        // The user is not logged in, send back an empty object
-      } else {
         db.User.findAll({ attributes: ['id', 'email',] }).then(function (results) {
           res.json(results);
         })
       }
-    }
   );
 
   // Search Users!
   app.get("/api/users/:id",  //works!
     function (req, res) {
-      if (!req.user) {
-      } else {
-
         idVar = req.params.id;
         db.User.findAll({
           attributes: ['id', 'email'],
@@ -96,15 +75,11 @@ module.exports = function (app) {
           res.json(results);
         })
       }
-    }
   );
   // search comments      NOT TESted (need some comments before can test)
   app.get("/api/comments/:id",
     isAuthenticated,
     function (req, res) {
-      if (!req.user) {
-      } else {
-
         idVar = req.params.id;
         db.Comment.findAll({
           attributes: ['id', 'title', 'comment', ['UserId', 'user']],
@@ -116,15 +91,11 @@ module.exports = function (app) {
           res.json(results);
         })
       }
-    }
   );
   // search fish    not tested, need fish to test
   app.get("/api/fish/:id",
     isAuthenticated,
     function (req, res) {
-      if (!req.user) {
-      } else {
-
         idVar = req.params.id;
         db.Fish.findAll({
           attributes: ['id', 'location', 'length', 'species', 'comment'],
@@ -135,7 +106,6 @@ module.exports = function (app) {
           res.json(results);
         })
       }
-    }
   );
 
 
@@ -190,13 +160,7 @@ module.exports = function (app) {
   app.post("/api/comments",  //gets all comments as an array... json data?
     isAuthenticated,  //can I put this here?
     function (req, res) {
-      // if (!req.user) {
-      //   // The user is not logged in, send back an empty object
-      //   //if isAuthenticated works this is redundant- otherwise we should redirect
-      //   console.log("Please sign in");
-      //   res.json({
-      //   });
-      // } else {
+
       let myTitle = req.body.title;
       let myComment = req.body.comment;
       db.Comment.create({
@@ -220,10 +184,7 @@ module.exports = function (app) {
       let mySpecies = req.body.species;
       let myComment = req.body.comment;
       let myUser = req.body.UserId
-      // if (!req.user) {
-      //   // The user is not logged in, send back an empty object
-      //   res.json({});
-      // } else {
+
       db.Fish.create({
         location: myLocation,
         length: myLength,
@@ -274,7 +235,10 @@ module.exports = function (app) {
 
 
 
-
+//default route
+app.get('*',function (req, res) {
+  res.redirect('/test');
+});
 
 
 };  //end of export data
@@ -284,3 +248,17 @@ module.exports = function (app) {
 // current issue; no response (at all) if user not logged in.. this also means cannot test posts via postman...
 // api gets now return user to login is not logged in
 // post functions do not
+
+
+/*
+just putting this here in case getting rid of this code breaks something
+
+              // if (!req.user) {
+      //   // The user is not logged in, send back an empty object
+      //   //if isAuthenticated works this is redundant- otherwise we should redirect
+      //   console.log("Please sign in");
+      //   res.json({
+      //   });
+      // } else {
+        code goes here
+*/
