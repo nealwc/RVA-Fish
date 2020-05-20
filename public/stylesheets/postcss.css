@@ -1,0 +1,39 @@
+body {
+    background-image: url(http://www.srmfre.com/wp-content/uploads/2017/12/10-things-that-you-should-know-about-the-James-River.jpg);
+    background-repeat: no-repeat;
+  background-attachment: fixed;
+  opacity: 0.9;
+}
+
+#postcard {
+    width: 75%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+#titleinput {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#descripinput {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#cancel {
+    position: relative;
+    left: 500px;
+}
+
+#submit {
+    position: relative;
+    left: 35px;
+}
+
+#username {
+    position: relative;
+    left: 25px;
+}
