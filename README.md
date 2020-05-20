@@ -10,7 +10,7 @@
     -might have to join by a location id...
     input is easiest to implement but makes searching by location sloppy
 
-+ User should not need more than email and password right?
+
 - all the other tables can simply be joined to user by user's automatically generated id
 - 
  
