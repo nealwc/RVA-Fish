@@ -10,3 +10,23 @@ form.login {
   /* background-size: cover; */
   background-size: 100% 100%;
 }
+
+#Fishtagram {
+  text-shadow: 1px 1px 1px #ccc;
+}
+
+body {
+  background-image: url(http://www.srmfre.com/wp-content/uploads/2017/12/10-things-that-you-should-know-about-the-James-River.jpg);
+  opacity: 0.85;
+}
+
+#Title {
+  color: white;
+  font-size: 90px;
+  text-align: center;
+}
+
+#searchbutt {
+  margin-top: 50px;
+  
+}
