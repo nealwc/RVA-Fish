@@ -37,4 +37,8 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/brag.html"))
   });
 
+  app.get("/post", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/post.html"))
+  });
+
 };
