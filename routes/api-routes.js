@@ -129,7 +129,7 @@ module.exports = function (app) {
 
         idVar = req.params.id;
         db.Comment.findAll({
-          attributes: ['id', 'title', 'comment', ['user_id', 'user'], 'category'],
+          attributes: ['id', 'title', 'comment', ['user_id', 'user']],
           //need to make this a join later - should show user's name instead of user id
           where: {
             id: idVar
@@ -171,6 +171,7 @@ module.exports = function (app) {
       } else {
         db.Comment.findAll({}).then(function (results) {
           res.json(results);
+          //should consider making this return all except comment, so its user to look through and see titles
         })
       }
     }
