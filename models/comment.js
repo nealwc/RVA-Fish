@@ -14,10 +14,8 @@ module.exports = function (sequelize, DataTypes) {
         user_id: {
             type: DataTypes.INTEGER
             //this should be a foreign key... do I need to do something special?
-        },
-        category: {
-            type: DataTypes.STRING
-        },
+        }
+
 
     });
     return Comment;
