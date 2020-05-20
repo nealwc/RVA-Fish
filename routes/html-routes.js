@@ -42,3 +42,5 @@ module.exports = function (app) {
   });
 
 };
+
+//need to set a default route... for accidental typos
