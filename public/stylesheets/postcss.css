@@ -13,27 +13,71 @@ body {
     margin-top: 30px;
 }
 
-#titleinput {
+#title-input {
     margin-left: auto;
     margin-right: auto;
 }
 
-#descripinput {
+#comment-input {
     margin-left: auto;
     margin-right: auto;
 }
 
 #cancel {
     position: relative;
-    left: 500px;
+    left: 485px;
 }
 
 #submit {
     position: relative;
-    left: 35px;
+    left: 15px;
 }
 
 #username {
     position: relative;
     left: 25px;
+}
+
+/* Beginning of CSS for Brag.html specifics */
+
+#species-input {
+    width: 115%;
+    position: relative;
+    right: 70px;
+}
+
+#location-input {
+    width: 115%;
+    position: relative;
+}
+
+#length-input {
+    width: 115%;
+    position: relative;
+    right: 70px;
+}
+
+#weight-input {
+    width: 115%;
+    position: relative;
+}
+
+#photo-form {
+    position: relative;
+    left: 470px;
+}
+
+#photo-label {
+    position: relative;
+    left: 50px;
+}
+
+#submit-brag {
+    position: relative;
+    left: 15px;
+}
+
+#cancel-brag {
+    position: relative;
+    left: 485px;  
 }
