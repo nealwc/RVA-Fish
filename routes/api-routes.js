@@ -40,28 +40,28 @@ module.exports = function (app) {
   });
 
   // Route for getting some data about our user to be used client side
-  app.get("/api/user_data", 
-  isAuthenticated,
-  function (req, res) {
-    if (!req.user) {
-      // The user is not logged in, send back an empty object
-      res.json({});
-    } else {
-      // Otherwise send back the user's email and id
-      // Sending back a password, even a hashed password, isn't a good idea
-      res.json({
-        email: req.user.email,
-        id: req.user.id
-        // this will need to be added to in order to use this to see full user profiles
+  app.get("/api/user_data",
+    isAuthenticated,
+    function (req, res) {
+      if (!req.user) {
+        // The user is not logged in, send back an empty object
+        res.json({});
+      } else {
+        // Otherwise send back the user's email and id
+        // Sending back a password, even a hashed password, isn't a good idea
+        res.json({
+          email: req.user.email,
+          id: req.user.id
+          // this will need to be added to in order to use this to see full user profiles
 
-      });
-    }
-  });
+        });
+      }
+    });
 
   //need to create an api-route that sends user data for a person via search
   //will need sequalize functions
   app.get("/api/fish",
-  isAuthenticated,
+    isAuthenticated,
     function (req, res) {
       if (!req.user) {
         // The user is not logged in, send back an empty object
@@ -75,7 +75,7 @@ module.exports = function (app) {
     });
 
   app.get("/api/comments",  //gets all comments as an array... json data?
-  isAuthenticated,
+    isAuthenticated,
     function (req, res) {
       if (!req.user) {
         // The user is not logged in, send back an empty object
@@ -90,7 +90,7 @@ module.exports = function (app) {
 
 
   app.get("/api/users",  //gets all users as an array... 
-  isAuthenticated,
+    isAuthenticated,
     function (req, res) {
       if (!req.user) {
         // The user is not logged in, send back an empty object
@@ -122,7 +122,7 @@ module.exports = function (app) {
   );
   // search comments      NOT TESted (need some comments before can test)
   app.get("/api/comments/:id",
-  isAuthenticated,
+    isAuthenticated,
     function (req, res) {
       if (!req.user) {
       } else {
@@ -142,7 +142,7 @@ module.exports = function (app) {
   );
   // search fish    not tested, need fish to test
   app.get("/api/fish/:id",
-  isAuthenticated,
+    isAuthenticated,
     function (req, res) {
       if (!req.user) {
       } else {
@@ -165,32 +165,46 @@ module.exports = function (app) {
 
   app.post("/api/comments",  //gets all comments as an array... json data?
     function (req, res) {
+      console.log("initiating post");
+      if (!req.user) {
+        // The user is not logged in, send back an empty object
+        res.json({});
+      } else {
+        console.log(req);
+        console.log("*******")
+        db.Comment.create({
+          //what is created goes here
+          title : req.body.title,
+          comment: req.body.comment
+
+        })
+          .then(function (results) {
+            // res.redirect(303, "/test");
+            // console.log(req)
+            console.log(results);
+          })
+      }
+    }
+
+
+
+
+  );  //not tested
+
+  // NEED fish post... not tested yet
+
+  app.post("/api/fish",  //gets all comments as an array... json data?
+    function (req, res) {
       if (!req.user) {
         // The user is not logged in, send back an empty object
         res.json({});
       } else {
         db.Comment.findAll({}).then(function (results) {
           res.json(results);
-          //should consider making this return all except comment, so its user to look through and see titles
         })
       }
     }
   );  //not tested
-
-// NEED fish post... not tested yet
-
-app.post("/api/fish",  //gets all comments as an array... json data?
-function (req, res) {
-  if (!req.user) {
-    // The user is not logged in, send back an empty object
-    res.json({});
-  } else {
-    db.Comment.findAll({}).then(function (results) {
-      res.json(results);
-    })
-  }
-}
-);  //not tested
 
 
 
@@ -211,4 +225,5 @@ function (req, res) {
 // Note that API calls for people not logged in return empty arrays- if this works...
 // current issue; no response (at all) if user not logged in.. this also means cannot test posts via postman...
 // api gets now return user to login is not logged in
-// post functions do not
+// post functions broken!!
+// need to make them run create...

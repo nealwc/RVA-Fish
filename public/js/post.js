@@ -22,13 +22,15 @@ $(document).ready(function () {
     });
 
     function newPost(title, comment) {
-        $.post("/api/comment", {
+        $.post("/api/comments", {
             title: title,
             comment: comment
         })
             .then(function (data) {
                 window.location.replace("/brag");
                 // If there's an error, handle it by throwing up a bootstrap alert
+                //not redirecting at all...
+                console.log(title);
             })
             .catch(handleLoginErr);
     }
