@@ -158,13 +158,14 @@ module.exports = function (app) {
   // POSTS  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   app.post("/api/comments",  //gets all comments as an array... json data?
-    isAuthenticated,  //can I put this here?
+    // isAuthenticated,  //can I put this here?
+        // need to reactivate before we deploy
     function (req, res) {
       console.log("initiating post");
-      if (!req.user) {
+      // if (!req.user) {
         // The user is not logged in, send back an empty object
         res.json({});
-      } else {
+      // } else {
         console.log(req);
         console.log("*******")
         db.Comment.create({
@@ -179,33 +180,18 @@ module.exports = function (app) {
             console.log(results);
           })
       }
-    }
+    // }
 
 
 
 
   );  //not tested
 
-  // NEED fish post... not tested yet
-
-  app.post("/api/fish",  //gets all comments as an array... json data?
-    function (req, res) {
-      if (!req.user) {
-        // The user is not logged in, send back an empty object
-        res.json({});
-      } else {
-        db.Comment.findAll({}).then(function (results) {
-          res.json(results);
-        })
-      }
-    }
-  );  //not tested
-
-
 
   // NEED fish post... not tested yet
 
   app.post("/api/fish",  //gets all comments as an array... json data?
+  //need authentication
     function (req, res) {
       let myLocation = req.body.location;
       let myLength = req.body.length;
@@ -230,7 +216,12 @@ module.exports = function (app) {
 
 
 
-  //these came with base folders
+
+
+
+
+
+  //these came with base folders ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.

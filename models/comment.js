@@ -20,11 +20,12 @@ module.exports = function (sequelize, DataTypes) {
 
     Comment.belongsTo(models.User, {
       foreignKey: {
-        allowNull: false
+        allowNull: true
       }
     });
   };
 
+  
   return Comment;
 
 
