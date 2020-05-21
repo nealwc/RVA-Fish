@@ -5,29 +5,27 @@ User = require("./user");    // didnt work
 // let db = require("./models");    //didnt work
 // Creating our User model
 module.exports = function (sequelize, DataTypes) {
-    let Comment = sequelize.define("Comment", {
+  let Comment = sequelize.define("Comment", {
 
-        title: {
-            type: DataTypes.STRING
-        },
-        comment: {
-            type: DataTypes.STRING
-        },
+    title: {
+      type: DataTypes.STRING
+    },
+    comment: {
+      type: DataTypes.STRING
+    },
 
+  });
 
+  Comment.associate = function (models) {
 
+    Comment.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
     });
+  };
 
-    Comment.associate = function(models) {
-
-        Comment.belongsTo(models.User, {
-          foreignKey: {
-            allowNull: false
-          }
-        });
-      };
-
-    return Comment;
+  return Comment;
 
 
 
