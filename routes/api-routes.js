@@ -18,31 +18,15 @@ module.exports = function (app) {
   app.get("/api/user_data",
     isAuthenticated,
     function (req, res) {
-<<<<<<< HEAD
-      if (!req.user) {
-        // The user is not logged in, send back an empty object
-        res.json({});
-      } else {
-        // Otherwise send back the user's email and id
-        // Sending back a password, even a hashed password, isn't a good idea
-        res.json({
-          email: req.user.email,
-          id: req.user.id
-          // this will need to be added to in order to use this to see full user profiles
 
-        });
-      }
-=======
+      // Otherwise send back the user's email and id
+      // Sending back a password, even a hashed password, isn't a good idea
+      res.json({
+        email: req.user.email,
+        id: req.user.id
+        // this will need to be added to in order to use this to see full user profiles
 
-        // Otherwise send back the user's email and id
-        // Sending back a password, even a hashed password, isn't a good idea
-        res.json({
-          email: req.user.email,
-          id: req.user.id
-          // this will need to be added to in order to use this to see full user profiles
-
-        });
->>>>>>> 8365ca6c1d8ec2620266e816da6246898038db91
+      });
     });
 
   //need to create an api-route that sends user data for a person via search
@@ -50,78 +34,78 @@ module.exports = function (app) {
   app.get("/api/fish",
     isAuthenticated,
     function (req, res) {
-        //this should send an array of all of table fishes
-        db.Fish.findAll({}).then(function (results) {
-          res.json(results);
-        });
+      //this should send an array of all of table fishes
+      db.Fish.findAll({}).then(function (results) {
+        res.json(results);
+      });
     });
 
   app.get("/api/comments",  //gets all comments as an array... json data?
     isAuthenticated,
     function (req, res) {
-        db.Comment.findAll({
-          // order: ['Created_At', 'DESC']
-          // https://sequelize.org/master/manual/model-querying-basics.html
-        }).then(function (results) {
-          res.json(results);
-        })
-      }
+      db.Comment.findAll({
+        // order: ['Created_At', 'DESC']
+        // https://sequelize.org/master/manual/model-querying-basics.html
+      }).then(function (results) {
+        res.json(results);
+      })
+    }
   );
 
 
   app.get("/api/users",  //gets all users as an array... 
     isAuthenticated,
     function (req, res) {
-        db.User.findAll({ attributes: ['id', 'email',] }).then(function (results) {
-          res.json(results);
-        })
-      }
+      db.User.findAll({ attributes: ['id', 'email',] }).then(function (results) {
+        res.json(results);
+      })
+    }
   );
 
   // Search Users!
   app.get("/api/users/:id",  //works!
     function (req, res) {
-        idVar = req.params.id;
-        db.User.findAll({
-          attributes: ['id', 'email'],
-          where: {
-            id: idVar
-          }
-        }).then(function (results) {
-          res.json(results);
-        })
-      }
+      idVar = req.params.id;
+      db.User.findAll({
+        attributes: ['id', 'email'],
+        where: {
+          id: idVar
+        }
+      }).then(function (results) {
+        res.json(results);
+      })
+    }
   );
   // search comments      NOT TESted (need some comments before can test)
   app.get("/api/comments/:id",
     isAuthenticated,
     function (req, res) {
-        idVar = req.params.id;
-        db.Comment.findAll({
-          attributes: ['id', 'title', 'comment', ['UserId', 'user']],
-          //need to make this a join later - should show user's name instead of user id
-          where: {
-            id: idVar
-          }
-        }).then(function (results) {
-          res.json(results);
-        })
-      }
+      idVar = req.params.id;
+      db.Comment.findAll({
+        attributes: ['id', 'title', 'comment', ['UserId', 'user']],
+        //need to make this a join later - should show user's name instead of user id
+        where: {
+          id: idVar
+        }
+      }).then(function (results) {
+        res.json(results);
+      })
+    }
   );
   // search fish    not tested, need fish to test
   app.get("/api/fish/:id",
     isAuthenticated,
     function (req, res) {
-        idVar = req.params.id;
-        db.Fish.findAll({
-          attributes: ['id', 'location', 'length', 'species', 'comment'],
-          where: {
-            id: idVar
-          }
-        }).then(function (results) {
-          res.json(results);
-        })
-      }
+      idVar = req.params.id;
+      db.Fish.findAll({
+        attributes: ['id', 'location', 'length', 'species', 'comment'],
+        where: {
+          id: idVar
+        }
+      }).then(function (results) {
+        res.json(results);
+      })
+    }
   );
 
 
@@ -185,7 +169,7 @@ module.exports = function (app) {
         console.log("*******")
         db.Comment.create({
           //what is created goes here
-          title : req.body.title,
+          title: req.body.title,
           comment: req.body.comment
 
         })
@@ -218,19 +202,6 @@ module.exports = function (app) {
   );  //not tested
 
 
-      let myTitle = req.body.title;
-      let myComment = req.body.comment;
-      db.Comment.create({
-        title: myTitle,
-        comment: myComment
-      }).then(function (results) {
-        console.log("posted " + mytitle);
-        //redirect to main page
-        res.redirect(307, "/test");
-      })
-    }
-    // }
-  );  //not tested
 
   // NEED fish post... not tested yet
 
@@ -292,10 +263,10 @@ module.exports = function (app) {
 
 
 
-//default route
-app.get('*',function (req, res) {
-  res.redirect('/test');
-});
+  //default route
+  app.get('*', function (req, res) {
+    res.redirect('/test');
+  });
 
 
 };  //end of export data
@@ -304,10 +275,6 @@ app.get('*',function (req, res) {
 // Note that API calls for people not logged in return empty arrays- if this works...
 // current issue; no response (at all) if user not logged in.. this also means cannot test posts via postman...
 // api gets now return user to login is not logged in
-<<<<<<< HEAD
-// post functions broken!!
-// need to make them run create...
-=======
 // post functions do not
 
 
@@ -323,4 +290,3 @@ just putting this here in case getting rid of this code breaks something
       // } else {
         code goes here
 */
->>>>>>> 8365ca6c1d8ec2620266e816da6246898038db91
