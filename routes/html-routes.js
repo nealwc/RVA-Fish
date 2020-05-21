@@ -29,16 +29,18 @@ module.exports = function (app) {
   });
 
   // 
-  app.get("/test", function (req, res) {
+  app.get("/test", isAuthenticated, function (req, res) {
     res.sendFile(path.join(__dirname, "../public/pro2draft.html"))
   });
 
-  app.get("/brag", function (req, res) {
+  app.get("/brag", isAuthenticated, function (req, res) {
     res.sendFile(path.join(__dirname, "../public/brag.html"))
   });
 
-  app.get("/post", function (req, res) {
+  app.get("/post", isAuthenticated, function (req, res) {
     res.sendFile(path.join(__dirname, "../public/post.html"))
   });
 
 };
+
+//need to set a default route... for accidental typos

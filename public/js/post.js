@@ -7,6 +7,7 @@ $(document).ready(function () {
     // When the signup button is clicked, we validate the email and password are not blank
     postForm.on("submit", function (event) {
         event.preventDefault();
+        console.log("HI GORM")
         var postData = {
             title: titleInput.val().trim(),
             comment: commentInput.val().trim()
@@ -22,6 +23,7 @@ $(document).ready(function () {
     });
 
     function newPost(title, comment) {
+        console.log("ajax call to comments");
         $.post("/api/comments", {
             title: title,
             comment: comment
