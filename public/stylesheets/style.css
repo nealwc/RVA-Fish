@@ -26,8 +26,13 @@ body {
   text-align: center;
 }
 
-#searchbutt {
+#logoutbutt {
   position: absolute;
   top: 50px;
   right: 75px;
+  color: white;
+}
+
+#logoutlink {
+  color: white;
 }
