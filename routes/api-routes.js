@@ -256,7 +256,7 @@ module.exports = function (app) {
 
   //default route
   app.get('*', function (req, res) {
-    res.redirect('/test');
+    res.redirect('/members');
   });
 
 
