@@ -28,7 +28,7 @@ module.exports = function (sequelize, DataTypes) {
 
         Fish.belongsTo(models.User, {
             foreignKey: {
-                allowNull: false
+                allowNull: true
             }
         });
     };
