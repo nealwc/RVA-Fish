@@ -36,3 +36,24 @@ body {
 #logoutlink {
   color: white;
 }
+
+/* Login Specific CSS */
+
+#email-input {
+
+}
+
+#password-input {
+
+}
+
+#login-button{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#newuser {
+  position: relative;
+  up: 70px;
+}
