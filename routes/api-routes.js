@@ -192,9 +192,11 @@ module.exports = function (app) {
     function (req, res) {
       let myLocation = req.body.location;
       let myLength = req.body.length;
+        //convert to number?
       let mySpecies = req.body.species;
       let myComment = req.body.comment;
       let myUser = req.body.UserId
+        //convert to int?
 
       db.Fish.create({
         location: myLocation,
