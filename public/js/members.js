@@ -6,7 +6,9 @@ $(document).ready(function() {
   });
 
 
-
+  $.get("/api/comments").then(function(data) {
+    $(".xxx").text(data.email);
+  });
 
 
 
