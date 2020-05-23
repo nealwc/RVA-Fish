@@ -5,13 +5,7 @@ form.login {
 
 body {
   background-image: url(http://www.srmfre.com/wp-content/uploads/2017/12/10-things-that-you-should-know-about-the-James-River.jpg);
-  opacity: 0.9;
-}
-
-#Title {
-  color: white;
-  font-size: 90px;
-  text-align: center;
+  opacity: 0.91;
 }
 
 #logoutbutt {
@@ -26,13 +20,6 @@ body {
 }
 
 /* Login Specific CSS */
-
-/* @media screen and (max-width: 800px) {
-  #email-input, #password-input {
-    resize: horizontal; 
-    width: auto;
-    overflow: auto;
-  } */
 
 #email-input {
 margin-left: auto;
@@ -50,9 +37,4 @@ padding-right: 20px;
   display: block;
   margin-left: auto;
   margin-right: auto;
-}
-
-#newuser {
-  position: relative;
-  up: 70px;
 }
