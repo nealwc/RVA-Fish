@@ -46,4 +46,18 @@ $(document).ready(function () {
         newPost(postData);
     });
 
+
+    $("#cancel-brag").on("click", function () {
+        //redirect to bragboard
+        // window.location.href = redirectUrl;
+        window.location.href = "/bragboard";
+
+    });
+
+
+
+
+
+
+
 }); //end document ready
