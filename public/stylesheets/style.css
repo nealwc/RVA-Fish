@@ -3,18 +3,6 @@ form.login {
   margin-top: 50px;
 }
 
-.jumbotron {
-  background-image: url(http://www.travelthewholeworld.com/wp-content/uploads/2014/01/Virginia-Richmond-James-River.jpg);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  /* background-size: cover; */
-  background-size: 100% 100%;
-}
-
-#Fishtagram {
-  text-shadow: 1px 1px 1px #ccc;
-}
-
 body {
   background-image: url(http://www.srmfre.com/wp-content/uploads/2017/12/10-things-that-you-should-know-about-the-James-River.jpg);
   opacity: 0.9;
@@ -39,12 +27,23 @@ body {
 
 /* Login Specific CSS */
 
-#email-input {
+/* @media screen and (max-width: 800px) {
+  #email-input, #password-input {
+    resize: horizontal; 
+    width: auto;
+    overflow: auto;
+  } */
 
+#email-input {
+margin-left: auto;
+margin-right: auto;
 }
 
 #password-input {
-
+margin-left: auto;
+margin-right: auto;
+padding-left: 20px;
+padding-right: 20px;
 }
 
 #login-button{
