@@ -25,7 +25,7 @@ body {
 
 #cancel {
     position: relative;
-    left: 485px;
+    left: 500px;
 }
 
 #submit {
@@ -41,24 +41,24 @@ body {
 /* Beginning of CSS for Brag.html specifics */
 
 #species-input {
-    width: 115%;
+    width: 100%;
     position: relative;
-    right: 70px;
+    /* right: 50px; */
 }
 
 #location-input {
-    width: 115%;
+    width: 100%;
     position: relative;
 }
 
 #length-input {
-    width: 115%;
+    width: 100%;
     position: relative;
-    right: 70px;
+    /* right: 50px; */
 }
 
 #weight-input {
-    width: 115%;
+    width: 100%;
     position: relative;
 }
 
@@ -67,17 +67,29 @@ body {
     left: 470px;
 }
 
-#photo-label {
+/* #photo-label {
     position: relative;
-    left: 50px;
-}
+    right: 100px;
+} */
 
 #submit-brag {
-    position: relative;
-    left: 15px;
+    /* position: relative;
+    left: 15px; */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #cancel-brag {
-    position: relative;
-    left: 485px;  
+    /* position: relative;
+    left: 335px;   */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#photo-form {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
 }
