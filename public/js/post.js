@@ -1,36 +1,31 @@
 $(document).ready(function () {
     // Getting references to our form and input
     var postForm = $("form.post");
-    var titleInput = $("input#title-input");
-    var commentInput = $("input#comment-input");
+    var titleInput = $("#title-input");
+    var commentInput = $("#comment-input");
 
     // When the signup button is clicked, we validate the email and password are not blank
-    postForm.on("submit", function (event) {
+    $(document).on("submit", "#fish-form", function (event) {
         event.preventDefault();
         console.log("HI GORM")
         var postData = {
             title: titleInput.val().trim(),
             comment: commentInput.val().trim()
         };
+        console.log(postData);
 
-        if (!userData.email || !userData.password) {
-            return;
-        }
-        // If we have an email and password, run the signUpUser function
-        newPost(postData.title, postData.comment);
-        emailInput.val("");
-        passwordInput.val("");
+        newPost(postData);
+
     });
 
-    function newPost(title, comment) {
+    function newPost(postData) {
         console.log("ajax call to comments");
-        $.post("/api/comments", {
-            title: title,
-            comment: comment
-        })
+        $.post("/api/comments", postData)
             .then(function (data) {
-                window.location.replace("/brag");
+                window.location.replace("/members");
                 // If there's an error, handle it by throwing up a bootstrap alert
+                //not redirecting at all...
+                console.log(title);
             })
             .catch(handleLoginErr);
     }

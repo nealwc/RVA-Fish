@@ -19,14 +19,14 @@ module.exports = function (app) {
     isAuthenticated,
     function (req, res) {
 
-        // Otherwise send back the user's email and id
-        // Sending back a password, even a hashed password, isn't a good idea
-        res.json({
-          email: req.user.email,
-          id: req.user.id
-          // this will need to be added to in order to use this to see full user profiles
+      // Otherwise send back the user's email and id
+      // Sending back a password, even a hashed password, isn't a good idea
+      res.json({
+        email: req.user.email,
+        id: req.user.id
+        // this will need to be added to in order to use this to see full user profiles
 
-        });
+      });
     });
 
   //need to create an api-route that sends user data for a person via search
@@ -34,78 +34,78 @@ module.exports = function (app) {
   app.get("/api/fish",
     isAuthenticated,
     function (req, res) {
-        //this should send an array of all of table fishes
-        db.Fish.findAll({}).then(function (results) {
-          res.json(results);
-        });
+      //this should send an array of all of table fishes
+      db.Fish.findAll({}).then(function (results) {
+        res.json(results);
+      });
     });
 
   app.get("/api/comments",  //gets all comments as an array... json data?
     isAuthenticated,
     function (req, res) {
-        db.Comment.findAll({
-          // order: ['Created_At', 'DESC']
-          // https://sequelize.org/master/manual/model-querying-basics.html
-        }).then(function (results) {
-          res.json(results);
-        })
-      }
+      db.Comment.findAll({
+        // order: ['Created_At', 'DESC']
+        // https://sequelize.org/master/manual/model-querying-basics.html
+      }).then(function (results) {
+        res.json(results);
+      })
+    }
   );
 
 
   app.get("/api/users",  //gets all users as an array... 
     isAuthenticated,
     function (req, res) {
-        db.User.findAll({ attributes: ['id', 'email',] }).then(function (results) {
-          res.json(results);
-        })
-      }
+      db.User.findAll({ attributes: ['id', 'email',] }).then(function (results) {
+        res.json(results);
+      })
+    }
   );
 
   // Search Users!
   app.get("/api/users/:id",  //works!
     function (req, res) {
-        idVar = req.params.id;
-        db.User.findAll({
-          attributes: ['id', 'email'],
-          where: {
-            id: idVar
-          }
-        }).then(function (results) {
-          res.json(results);
-        })
-      }
+      idVar = req.params.id;
+      db.User.findAll({
+        attributes: ['id', 'email'],
+        where: {
+          id: idVar
+        }
+      }).then(function (results) {
+        res.json(results);
+      })
+    }
   );
   // search comments      NOT TESted (need some comments before can test)
   app.get("/api/comments/:id",
     isAuthenticated,
     function (req, res) {
-        idVar = req.params.id;
-        db.Comment.findAll({
-          attributes: ['id', 'title', 'comment', ['UserId', 'user']],
-          //need to make this a join later - should show user's name instead of user id
-          where: {
-            id: idVar
-          }
-        }).then(function (results) {
-          res.json(results);
-        })
-      }
+      idVar = req.params.id;
+      db.Comment.findAll({
+        attributes: ['id', 'title', 'comment', ['UserId', 'user']],
+        //need to make this a join later - should show user's name instead of user id
+        where: {
+          id: idVar
+        }
+      }).then(function (results) {
+        res.json(results);
+      })
+    }
   );
   // search fish    not tested, need fish to test
   app.get("/api/fish/:id",
     isAuthenticated,
     function (req, res) {
-        idVar = req.params.id;
-        db.Fish.findAll({
-          attributes: ['id', 'location', 'length', 'species', 'comment'],
-          where: {
-            id: idVar
-          }
-        }).then(function (results) {
-          res.json(results);
-        })
-      }
+      idVar = req.params.id;
+      db.Fish.findAll({
+        attributes: ['id', 'location', 'length', 'species', 'comment'],
+        where: {
+          id: idVar
+        }
+      }).then(function (results) {
+        res.json(results);
+      })
+    }
   );
 
 
@@ -158,26 +158,40 @@ module.exports = function (app) {
   // POSTS  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   app.post("/api/comments",  //gets all comments as an array... json data?
-    isAuthenticated,  //can I put this here?
+    // isAuthenticated,  //can I put this here?
+        // need to reactivate before we deploy
     function (req, res) {
+      console.log("initiating post");
+      // if (!req.user) {
+        // The user is not logged in, send back an empty object
+        res.json({});
+      // } else {
+        console.log(req);
+        console.log("*******")
+        db.Comment.create({
+          //what is created goes here
+          title: req.body.title,
+          comment: req.body.comment
 
-      let myTitle = req.body.title;
-      let myComment = req.body.comment;
-      db.Comment.create({
-        title: myTitle,
-        comment: myComment
-      }).then(function (results) {
-        console.log("posted " + mytitle);
-        //redirect to main page
-        res.redirect(307, "/test");
-      })
-    }
+        })
+          .then(function (results) {
+            // res.redirect(303, "/test");
+            // console.log(req)
+            console.log(results);
+          })
+      }
     // }
+
+
+
+
   );  //not tested
+
 
   // NEED fish post... not tested yet
 
   app.post("/api/fish",  //gets all comments as an array... json data?
+  //need authentication
     function (req, res) {
       let myLocation = req.body.location;
       let myLength = req.body.length;
@@ -202,7 +216,12 @@ module.exports = function (app) {
 
 
 
-  //these came with base folders
+
+
+
+
+
+  //these came with base folders ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
@@ -235,10 +254,10 @@ module.exports = function (app) {
 
 
 
-//default route
-app.get('*',function (req, res) {
-  res.redirect('/test');
-});
+  //default route
+  app.get('*', function (req, res) {
+    res.redirect('/members');
+  });
 
 
 };  //end of export data
