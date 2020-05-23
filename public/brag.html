@@ -15,38 +15,69 @@
 <body>
     <img src="pro2finlogo.png" alt="RVAFISH"
         style="height: 200px; margin-top: 40px; margin-left: auto; margin-right: auto; display: block;"></img>
-    <div class="card" id="postcard">
-        <form>
-            <div class="form-group">
-                <br>
-                <h2 id="username">Username</h2>
-                <br>
-                <input type="title" class="form-control" id="title-input" aria-describedby="title" style="width: 95%;"
-                    placeholder="Post Title">
-                <br>
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-5">
-                        <input type="species" class="form-control" id="species-input" aria-describedby="species"
-                            placeholder="Fish Species">
+    <div class="container">
+        <div class="card" id="postcard">
+            <form>
+                <div class="form-group">
+                    <br>
+                    <h2 id="username">Username</h2>
+                    <br>
+                    <input type="title" class="form-control" id="title-input" aria-describedby="title"
+                        style="width: 80%;" placeholder="Post Title">
+                    <br>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+                                <input type="species" class="form-control" id="species-input" aria-describedby="species"
+                                    placeholder="Fish Species">
+                            </div>
+                            <div class="col-md-5">
+                                <input type="location" class="form-control" id="location-input"
+                                    aria-describedby="location" placeholder="Location Caught">
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
                     </div>
-                    <div class="col-md-5">
-                        <input type="location" class="form-control" id="location-input" aria-describedby="location"
-                            placeholder="Location Caught">
+                    <br>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+                                <input type="length" class="form-control" id="length-input" aria-describedby="length"
+                                    placeholder="Fish Length (Inches)">
+                            </div>
+                            <div class="col-md-5">
+                                <input type="weight" class="form-control" id="weight-input" aria-describedby="weight"
+                                    placeholder="Fish Weight (Pounds)">
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
                     </div>
-                    <div class="col-md-1"></div>
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-5">
-                        <input type="length" class="form-control" id="length-input" aria-describedby="length"
-                            placeholder="Fish Length (Inches)">
+                    <br>
+                    <textarea class="form-control" id="comment-input" rows="3" style= "width: 80%"
+                        placeholder="Post Description"></textarea>
+                    <br>
+                    <div class="form-group" id="photo-form">
+                        <label for="select-photo" id="photo-label" style= "position: relative; right: 385px;"><strong>Insert a Picture</strong></label>
+                        <input type="file" class="form-control-file" id="select-photo" style= "position: relative; right: 385px;">
                     </div>
-                    <div class="col-md-5">
-                        <input type="weight" class="form-control" id="weight-input" aria-describedby="weight"
-                            placeholder="Fish Weight (Pounds)">
+                    <div class="form-row" id="btn1">
+                        <div class="col-md-6">
+                            <button type="cancel" class="btn btn-danger" id="cancel-brag">Cancel</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-success" id="submit-brag">Post</button>
+                        </div>
                     </div>
+<<<<<<< HEAD
+            </form>
+        </div>
+    </div>
+    </div>
+    <br>
+
+=======
                     <div class="col-md-1"></div>
                 </div>
                 <br>
@@ -69,6 +100,7 @@
     </div>
     </div>
     <br>
+>>>>>>> a54208363bf104cd8871d393309d3bbda1bfc8b8
 
 
 
