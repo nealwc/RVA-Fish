@@ -29,8 +29,8 @@ module.exports = function (app) {
   });
 
   // 
-  app.get("/test", isAuthenticated, function (req, res) {
-    res.sendFile(path.join(__dirname, "../public/pro2draft.html"))
+  app.get("/bragboard", isAuthenticated, function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/bragboard.html"))
   });
 
   app.get("/brag", isAuthenticated, function (req, res) {
