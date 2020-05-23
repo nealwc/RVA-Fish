@@ -41,6 +41,14 @@ module.exports = function (app) {
     res.sendFile(path.join(__dirname, "../public/post.html"))
   });
 
+  app.get("/bragboard", isAuthenticated, function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/bragboard.html"))
+  });
+
+  app.get("/gonefishin", isAuthenticated, function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/gonefishin.html"))
+  });
+
 };
 
 //need to set a default route... for accidental typos

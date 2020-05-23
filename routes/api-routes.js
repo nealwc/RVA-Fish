@@ -166,13 +166,10 @@ module.exports = function (app) {
         // The user is not logged in, send back an empty object
         res.json({});
       // } else {
-        console.log(req);
-        console.log("*******")
         db.Comment.create({
           //what is created goes here
           title: req.body.title,
           comment: req.body.comment
-
         })
           .then(function (results) {
             // res.redirect(303, "/test");
