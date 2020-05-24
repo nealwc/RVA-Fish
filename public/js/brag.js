@@ -1,63 +1,40 @@
-
-//psuedocode
-// send data on post...
-
 $(document).ready(function () {
-
     //define variables
+    let titleInput = $("#title-input");
+    let speciesInput = $("#species-input");
+    let locationInput = $("#location-input");
+    let lengthInput = $("#length-input");
+    let weightInput = $("#weight-input");
+    let commentInput = $("#comment-input");
 
-    // let myTitle = $("#title-input").val().trim();
-    let myLocation = $("#location-input").val().trim();
-    // let myLength = $("#length-input").val().trim();
-    // need to make this validate 2 decimal spaces..
-    let myLength = 3.01;
-    let mySpecies = $("#species-input").val().trim();
-    let myComment = $("#comment-input").val().trim();
-    let myUserId = 0; // need to find way to get userId...
+    $(document).on("submit", "#brag-form", function (event) {
+        event.preventDefault();
+        console.log("submit clicked");
+        let bragData = {
+            title: titleInput.val().trim(),
+            species: speciesInput.val().trim(),
+            location: locationInput.val().trim(),
+            length: lengthInput.val().trim(),
+            weight: weightInput.val().trim(),
+            comment: commentInput.val().trim()
+        };
+        console.log(bragData)
 
+        newBrag(bragData)
+    });
 
-    //title and weight do not exist...
-
-    let postData = {
-        location: myLocation,
-        length: myLength,
-        species: mySpecies,
-        comment: myComment,
-        UserId: myUserId
-    }
-
-    //this needs to be on sumbit!
-    //define functions
-    function newPost(postData) {    //this post works... but data does not come through...
-        $.post("api/fish", postData)
+    function newBrag(bragData) {
+        $.post("/api/fish", bragData)
             .then(function (data) {
                 console.log("posting...");
-                res.redirect(303, "/");
+                window.location.replace("/bragboard")
             })
-            
+            .catch(handleLoginErr);
+
+    };
+
+    function handleLoginErr(err) {
+        $("#alert .msg").text(err.responseJSON);
+        $("#alert").fadeIn(500);
     }
-
-
-    //call functions
-    // $(document).on("submit", "#submit-brag", function (event) {
-    $("#submit-brag").on("click", function () {
-        console.log("test me");
-        console.log(postData);
-        newPost(postData);
-    });
-
-
-    $("#cancel-brag").on("click", function () {
-        //redirect to bragboard
-        // window.location.href = redirectUrl;
-        window.location.href = "/bragboard";
-
-    });
-
-
-
-
-
-
-
 }); //end document ready
