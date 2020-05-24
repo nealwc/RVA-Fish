@@ -173,8 +173,9 @@ module.exports = function (app) {
         })
           .then(function (results) {
             // res.redirect(303, "/test");
-            // console.log(req)
-            console.log(results);
+            console.log("*********");
+            console.log(req.body)
+            // console.log(results);
           })
       }
     // }
