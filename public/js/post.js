@@ -4,15 +4,14 @@ $(document).ready(function () {
     var titleInput = $("#title-input");
     var commentInput = $("#comment-input");
 
-    // When the signup button is clicked, we validate the email and password are not blank
     $(document).on("submit", "#fish-form", function (event) {
         event.preventDefault();
-        console.log("HI GORM")
+        // console.log("HI GORM")
         var postData = {
             title: titleInput.val().trim(),
             comment: commentInput.val().trim()
         };
-        console.log(postData);
+        // console.log(postData);
 
         newPost(postData);
 
@@ -34,4 +33,21 @@ $(document).ready(function () {
         $("#alert .msg").text(err.responseJSON);
         $("#alert").fadeIn(500);
     }
+
+
+
+
+
+
+
+
+    $.get("/api/user_data").then(function(data) {
+        $("#username").text(data.email);
+      });
+
+
+
+
+
+
 });

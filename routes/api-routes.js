@@ -159,28 +159,25 @@ module.exports = function (app) {
 
   app.post("/api/comments",  //gets all comments as an array... json data?
     // isAuthenticated,  //can I put this here?
-        // need to reactivate before we deploy
+    // need to reactivate before we deploy
     function (req, res) {
       console.log("initiating post");
       // if (!req.user) {
-        // The user is not logged in, send back an empty object
-        res.json({});
+      // The user is not logged in, send back an empty object
+      res.json({});
       // } else {
-        db.Comment.create({
-          //what is created goes here
-          title: req.body.title,
-          comment: req.body.comment
+      db.Comment.create({
+        //what is created goes here
+        title: req.body.title,
+        comment: req.body.comment
+      })
+        .then(function (results) {
+          // res.redirect(303, "/test");
+          // console.log(req)
+          console.log(results);
         })
-          .then(function (results) {
-            // res.redirect(303, "/test");
-            // console.log(req)
-            console.log(results);
-          })
-      }
+    }
     // }
-
-
-
 
   );  //not tested
 
@@ -188,24 +185,21 @@ module.exports = function (app) {
   // NEED fish post... not tested yet
 
   app.post("/api/fish",  //gets all comments as an array... json data?
-  //need authentication
+    //need authentication
     function (req, res) {
-      let myLocation = req.body.location;
-      let myLength = req.body.length;
-      let mySpecies = req.body.species;
-      let myComment = req.body.comment;
-      let myUser = req.body.UserId
+      res.json({});
 
       db.Fish.create({
-        location: myLocation,
-        length: myLength,
-        species: mySpecies,
-        comment: myComment,
+        title: req.body.title,
+        species: req.body.species,
+        location: req.body.location,
+        length: req.body.length,
+        weight: req.body.weight,
+        comment: req.body.comment
         //user id...
 
       }).then(function (results) {
-        console.log("fish posted");
-        res.redirect(307, "/test");
+        console.log(results);
       })
     }
     // }
