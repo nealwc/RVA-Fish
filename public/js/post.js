@@ -7,12 +7,12 @@ $(document).ready(function () {
     // When the signup button is clicked, we validate the email and password are not blank
     $(document).on("submit", "#fish-form", function (event) {
         event.preventDefault();
-        console.log("HI GORM")
+        // console.log("HI GORM")
         var postData = {
             title: titleInput.val().trim(),
             comment: commentInput.val().trim()
         };
-        console.log(postData);
+        // console.log(postData);
 
         newPost(postData);
 
