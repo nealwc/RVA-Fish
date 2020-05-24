@@ -4,24 +4,29 @@ let Sequelize = require("sequelize");
 // Creating our User model
 module.exports = function (sequelize, DataTypes) {
     var Fish = sequelize.define("Fish", {
-        location: {     //need to figure out if input a string , choose string from a dropbox or use a location ID
+        title: {
             type: DataTypes.STRING,
-            allowNull: false,
-            unique: false //not needed?
-
-        },
-        length: {   //may want to call this size
-            type: DataTypes.DECIMAL(10, 2),  //is two decimal points too much? what units to use?
+            allowNull: true,
         },
         species: {   //may want to call this animal type of something- should it just be fish?
             type: DataTypes.STRING,
             allowNull: false,
             unique: false //not needed?
         },
+        location: {     //need to figure out if input a string , choose string from a dropbox or use a location ID
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: false //not needed?
+        },
+        length: {   //may want to call this size
+            type: DataTypes.DECIMAL(10, 2),  //is two decimal points too much? what units to use?
+        },
+       weight: {
+           type: DataTypes.DECIMAL(10,2)
+       },
         comment: {
             type: DataTypes.STRING
         }
-
     });
 
     Fish.associate = function (models) {

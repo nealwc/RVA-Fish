@@ -4,7 +4,6 @@ $(document).ready(function () {
     var titleInput = $("#title-input");
     var commentInput = $("#comment-input");
 
-    // When the signup button is clicked, we validate the email and password are not blank
     $(document).on("submit", "#fish-form", function (event) {
         event.preventDefault();
         // console.log("HI GORM")
