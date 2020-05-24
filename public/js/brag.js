@@ -37,4 +37,11 @@ $(document).ready(function () {
         $("#alert .msg").text(err.responseJSON);
         $("#alert").fadeIn(500);
     }
+
+
+    $.get("/api/user_data").then(function (data) {
+        $("#username").text(data.email);
+      });
+
+
 }); //end document ready
