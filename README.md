@@ -43,7 +43,7 @@ eslint
 
 Contributing/Questions
 Carter Neal - https://github.com/nealwc
-Geordin Souci - https://github.com/GormTheWyrm
+Geordin Soucie - https://github.com/GormTheWyrm
 Jacob Patton - https://github.com/jspatton40
 Seth McNeace - https://github.com/mcneace
 Tawheed Haroon - https://github.com/Tawharo
