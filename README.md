@@ -1,6 +1,4 @@
-# Fish RVA
-
-[Fish RVA](https://moustache-jake.herokuapp.com/)
+# [Fish RVA](https://moustache-jake.herokuapp.com/)
 
 ## Description
 
