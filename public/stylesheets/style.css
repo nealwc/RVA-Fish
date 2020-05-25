@@ -38,3 +38,22 @@ padding-right: 20px;
   margin-left: auto;
   margin-right: auto;
 }
+
+
+/* Sign Up Page Specific CSS */
+
+#signup-email {
+margin-left: auto;
+margin-right: auto;
+}
+
+#signup-pass {
+margin-left: auto;
+margin-right: auto;
+}
+
+#signup-submit {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
