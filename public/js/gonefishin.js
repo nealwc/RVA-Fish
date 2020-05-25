@@ -17,8 +17,8 @@ $(document).ready(function () {
             var windSpeed = $("<p>").text("Wind Speed: " + response.wind.speed + " MPH");
             var date = new Date(response.dt * 1000).toLocaleDateString("en-US"); // convert dt to date
 
-            $("#city").append($("<h3>").text(cityName + " (" + date + ")"));
-            $("#city").append(icon);
+            $("#city").append($("<h1>").text(cityName + " (" + date + ")"));
+            $("#icon").append(icon);
             $("#temperature").append(temp);
             $("#humid").append(humidity);
             $("#wind").append(windSpeed);
