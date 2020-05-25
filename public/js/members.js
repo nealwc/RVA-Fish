@@ -23,7 +23,7 @@ $(document).ready(function () {
       // create html here
       myHtml = $("<div>");
       myHtml.addClass("card");
-      myHtml.html(`User: ${myId} 
+      myHtml.html(`User: ${myUserId} 
       <p> ${myTitle} </p>      
       <p> ${myComment}</p>
       <p> ${createdAt} </p>`);
