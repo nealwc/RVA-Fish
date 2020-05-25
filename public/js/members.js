@@ -13,17 +13,17 @@ $(document).ready(function () {
 
     //for loop -  I need to figure out how to get the length of comments/ the array od data...
     for (i = 0; i < data.length; i++) {
-     let myId;
+     let myUserId;
      let myTitle = data[i].title;
      let myComment = data[i].comment;
      let createdAt = data[i].createdAt;
-      if (data[i].UserId === null) {myId = "Anonymous"}
+      if (data[i].UserId === null) {myUserId = "Anonymous"}
       else {} //need to perform a join to get username!?!
 
       // create html here
       myHtml = $("<div>");
       myHtml.addClass("card");
-      myHtml.html(`User: ${myId} 
+      myHtml.html(`User: ${myUserId} 
       <p> ${myTitle} </p>      
       <p> ${myComment}</p>
       <p> ${createdAt} </p>`);

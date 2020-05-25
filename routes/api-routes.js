@@ -174,7 +174,7 @@ module.exports = function (app) {
         .then(function (results) {
           // res.redirect(303, "/test");
           // console.log(req)
-          console.log(results);
+          console.log("added new comment");
         })
     }
     // }
@@ -199,7 +199,7 @@ module.exports = function (app) {
         //user id...
 
       }).then(function (results) {
-        console.log(results);
+        console.log("added new record");
       })
     }
     // }
