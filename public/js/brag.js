@@ -22,7 +22,6 @@ $(document).ready(function () {
 
         newBrag(bragData)
     });
-
     function newBrag(bragData) {
         $.post("/api/fish", bragData)
             .then(function (data) {
@@ -30,18 +29,12 @@ $(document).ready(function () {
                 window.location.replace("/bragboard")
             })
             .catch(handleLoginErr);
-
     };
-
     function handleLoginErr(err) {
         $("#alert .msg").text(err.responseJSON);
         $("#alert").fadeIn(500);
     }
-
-
     $.get("/api/user_data").then(function (data) {
         $("#username").text(data.email);
       });
-
-
 }); //end document ready

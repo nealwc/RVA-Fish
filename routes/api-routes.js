@@ -1,9 +1,7 @@
 // Requiring our models and passport as we've configured it
-var db = require("../models");
-var passport = require("../config/passport");
-
-
-var isAuthenticated = require("../config/middleware/isAuthenticated");
+let db = require("../models");
+let passport = require("../config/passport");
+let isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function (app) {
 
@@ -29,18 +27,16 @@ module.exports = function (app) {
       });
     });
 
-  //need to create an api-route that sends user data for a person via search
-  //will need sequalize functions
+
   app.get("/api/fish",
     isAuthenticated,
     function (req, res) {
-      //this should send an array of all of table fishes
       db.Fish.findAll({}).then(function (results) {
         res.json(results);
       });
     });
 
-  app.get("/api/comments",  //gets all comments as an array... json data?
+  app.get("/api/comments",  
     isAuthenticated,
     function (req, res) {
       db.Comment.findAll({
@@ -112,57 +108,10 @@ module.exports = function (app) {
   );
 
 
-  //Should we have a search fish and search comments by user? name or UserId?
-  //search by category
-  // app.get("/api/comments-cat/:id",
-  //   isAuthenticated,
-  //   function (req, res) {
-  //     if (!req.user) {
-  //     } else {
-
-  //       idVar = req.params.id;
-  //       db.Comment.findAll({
-  //         attributes: ['id', 'title', 'comment', ['UserId', 'user']],
-  //         //need to make this a join later - should show user's name instead of user id
-  //         //will foeign key break this?
-  //         where: {
-  //           : idVar
-  //         }
-  //       }).then(function (results) {
-  //         res.json(results);
-  //       })
-  //     }
-  //   }
-  // );
-  // search fish    not tested, need fish to test
-
-  // search by user name?
-  // app.get("/api/fish/:id",
-  //   isAuthenticated,
-  //   function (req, res) {
-  //     if (!req.user) {
-  //     } else {
-
-  //       idVar = req.params.id;
-  //       db.Fish.findAll({
-  //         attributes: ['id', 'location', 'length', 'species', 'comment'],
-  //         where: {
-  //           id: idVar
-  //         }
-  //       }).then(function (results) {
-  //         res.json(results);
-  //       })
-  //     }
-  //   }
-  // );
-
-
-
   // POSTS  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   app.post("/api/comments",  //gets all comments as an array... json data?
-    // isAuthenticated,  //can I put this here?
-    // need to reactivate before we deploy
+    // isAuthenticated,  
     function (req, res) {
       console.log("initiating post");
       // if (!req.user) {
@@ -170,29 +119,23 @@ module.exports = function (app) {
       res.json({});
       // } else {
       db.Comment.create({
-        //what is created goes here
         title: req.body.title,
         comment: req.body.comment,
         UserId: req.user.id
         //email: req.user.email  // this is the data that should align with a foreign key...
       })
         .then(function (results) {
-          // res.redirect(303, "/test");
-          console.log(req);   //testing to see if user data is sent...
-          console.log("****** USERID");
-          console.log(req.user.id);
-          console.log(req.user.email);
           console.log("added new comment");
         })
     }
     // }
 
-  );  //not tested
+  );  
 
 
-  // NEED fish post... not tested yet
 
-  app.post("/api/fish",  //gets all comments as an array... json data?
+
+  app.post("/api/fish",  //gets all comments as an array
     //need authentication
     function (req, res) {
       res.json({});
@@ -204,24 +147,14 @@ module.exports = function (app) {
         length: req.body.length,
         weight: req.body.weight,
         comment: req.body.comment
-        //user id...
+        
 
       }).then(function (results) {
         console.log("added new record");
       })
     }
     // }
-  );  //not tested
-
-
-
-
-
-
-
-
-  //these came with base folders ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+  );  
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
@@ -232,7 +165,6 @@ module.exports = function (app) {
       id: req.user.id
     });
   });
-
   // Route for signing up a user. The user's password is automatically hashed and stored securely thanks to
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
@@ -248,11 +180,6 @@ module.exports = function (app) {
         res.status(401).json(err);
       });
   });
-
-
-
-
-
   //default route
   app.get('*', function (req, res) {
     res.redirect('/members');
@@ -260,23 +187,3 @@ module.exports = function (app) {
 
 
 };  //end of export data
-
-
-// Note that API calls for people not logged in return empty arrays- if this works...
-// current issue; no response (at all) if user not logged in.. this also means cannot test posts via postman...
-// api gets now return user to login is not logged in
-// post functions do not
-
-
-/*
-just putting this here in case getting rid of this code breaks something
-
-              // if (!req.user) {
-      //   // The user is not logged in, send back an empty object
-      //   //if isAuthenticated works this is redundant- otherwise we should redirect
-      //   console.log("Please sign in");
-      //   res.json({
-      //   });
-      // } else {
-        code goes here
-*/
