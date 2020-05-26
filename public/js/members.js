@@ -56,15 +56,14 @@ $(document).ready(function () {
 
         } //need to perform a join to get username!?!
         //test
-        let testProfilePic = usernameData[0].gravatar_url;
+        let testProfilePic = usernameData[0].gravatar_url;    // !! gravatar
         console.log(usernameData[0]);
-
+        let testuserName = "test Name";                       // !! email!
         // create html here
         myHtml = $("<div>");
         myHtml.addClass("card");
         myHtml.html(
-          `<img src="${testProfilePic}" />
-          User: ${myUserId} 
+          `<img src="${testProfilePic}" alt="${testuserName}" style="width:80px;"/> User: ${myUserId}
       <p> ${myTitle} </p>      
       <p> ${myComment}</p>
       <p> ${createdAt} </p>`);
