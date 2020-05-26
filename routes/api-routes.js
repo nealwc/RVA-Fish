@@ -1,7 +1,7 @@
 // Requiring our models and passport as we've configured it
 var db = require("../models");
 var passport = require("../config/passport");
-// let sequelize = require("sequelize"); //dont need this here?
+
 
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
@@ -23,8 +23,8 @@ module.exports = function (app) {
       // Sending back a password, even a hashed password, isn't a good idea
       res.json({
         email: req.user.email,
-        id: req.user.id
-        // this will need to be added to in order to use this to see full user profiles
+        id: req.user.id,
+        gravitat_url: req.user.gravitat_url
 
       });
     });
@@ -56,11 +56,14 @@ module.exports = function (app) {
   app.get("/api/users",  //gets all users as an array... 
     isAuthenticated,
     function (req, res) {
-      db.User.findAll({ attributes: ['id', 'email',] }).then(function (results) {
+      db.User.findAll({ attributes: ['id', 'email', 'gravatar_url']}).then(function (results) {
         res.json(results);
       })
     }
   );
+
+
+
 
   // Search Users!
   app.get("/api/users/:id",  //works!
@@ -169,11 +172,16 @@ module.exports = function (app) {
       db.Comment.create({
         //what is created goes here
         title: req.body.title,
-        comment: req.body.comment
+        comment: req.body.comment,
+        UserId: req.user.id
+        //email: req.user.email  // this is the data that should align with a foreign key...
       })
         .then(function (results) {
           // res.redirect(303, "/test");
-          // console.log(req)
+          console.log(req);   //testing to see if user data is sent...
+          console.log("****** USERID");
+          console.log(req.user.id);
+          console.log(req.user.email);
           console.log("added new comment");
         })
     }
