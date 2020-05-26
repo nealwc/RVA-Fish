@@ -1,11 +1,5 @@
-// console.log("test"); //worked!
-
-// ajax call gets the first x records
-
 
 $.get("/api/fish").then(function(data){
-console.log(data);
-
 
 for (i = 0; i < data.length; i++) {
     let myUserId;
@@ -32,12 +26,9 @@ for (i = 0; i < data.length; i++) {
      <p> Wieghing ${myWeight} lbs</p>      
      <p> ${myDescription}</p>
      <p> ${createdAt} </p>`);
-     //may need to convert from json...
 
      $(".comment-section").append(myHtml);
 
    }
 
 });
-
-//create card with the info

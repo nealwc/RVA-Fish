@@ -44,7 +44,6 @@ User.addHook("beforeCreate", function (user) {
 User.addHook("beforeCreate", function (user) {
   let preHash = `'${user.email}'`;  //this might need a "this"
   user.gravatar_url = gravatar.url(preHash, {r: 'pg', d: 'wavatar'});
-  console.log(user.gravatar_url); //worked! now need to make default different... &d=monsterid
 });
 
 //relationship
