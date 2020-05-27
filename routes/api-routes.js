@@ -50,7 +50,7 @@ module.exports = function (app) {
 
 
   app.get("/api/users",  //gets all users as an array... 
-    isAuthenticated,
+    // isAuthenticated, //decided I want to be able to see users while not signed in
     function (req, res) {
       db.User.findAll({ attributes: ['id', 'email', 'gravatar_url']}).then(function (results) {
         res.json(results);
