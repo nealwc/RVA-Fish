@@ -10,13 +10,16 @@ $(document).ready(function () {
     let activeNumber; //this will be the userId of active user
     // add a new user to userArray, including null users...
     for (i = 0; i < usernameData[usernameData.length - 1].id; i++) {
-      let tempEmail = usernameData[i].email; //will not work if undefined... causes bug if bad email passes validation
-      let tempId = usernameData[i].id;
-      let myUser = {
-        id: tempId,
-        email: tempEmail
-      }
-      userArray.push(myUser);
+      if (usernameData[i] !== undefined) {
+        let tempEmail = usernameData[i].email; //will not work if undefined... causes bug if bad email passes validation
+        let tempId = usernameData[i].id;
+        let myUser = {
+          id: tempId,
+          email: tempEmail
+        }
+        userArray.push(myUser);
+      } //if statement catches bug where user data is not defined. Needed if we are to implement deleting user accounts...
+      //.. should update this to use a more direct sequelize join...
     }
 
     $.get("/api/comments").then(function (data) {   //main api call
@@ -29,7 +32,7 @@ $(document).ready(function () {
           myUserId = "Anonymous";
         } //username = Anonymous if no data returned ^s
         else {
-          for (let j = 0; j < userArray.length; j++) {  //why is this not iterating if there is 1 comment?
+          for (let j = 0; j < userArray.length; j++) {  //this should work when there is a gap between user ids because its pullign from the array created from existing users
             if (userArray[j].id === data[i].UserId) {
               myUserId = userArray[j].email;
               activeNumber = j;
@@ -54,9 +57,9 @@ $(document).ready(function () {
 
         $(".comment-section").append(myHtml);   //attaches the html to the page
 
-      } //current bugs:
-      // comments not allowing line breaks within...
-      //...and page needs to be reloaded to register the changes
+      } 
+
+
     }); // this closes the api/commets ajax call
 
   }); //this closes the api/users ajax call
