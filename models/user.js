@@ -36,7 +36,7 @@ module.exports = function (sequelize, DataTypes) {
   User.associate = function (models) {
 
     User.hasMany(models.Fish);
-  };
+  };  //I need to figure out how to test these associations
 
 
   return User;

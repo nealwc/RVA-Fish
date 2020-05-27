@@ -272,3 +272,6 @@ just putting this here in case getting rid of this code breaks something
       // } else {
         code goes here
 */
+
+
+// find etc... include: [{model: db.xxx}]
