@@ -12,13 +12,13 @@ $(document).ready(function () {
             var iconUrl = "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png"; // current weather icon
             var icon = $("<img>").attr("src", iconUrl);
             var fahrTemp = ((response.main.temp - 271.15) * 1.8 + 32).toFixed(1); // converts open weather API 
-            var temp = $("<p>").html("Teperature: " + fahrTemp + " &deg;F");
-            var humidity = $("<p>").text("Humidity: " + response.main.humidity + "%");
-            var windSpeed = $("<p>").text("Wind Speed: " + response.wind.speed + " MPH");
+            var temp = $("<h3>").html("Teperature: " + fahrTemp + " &deg;F");
+            var humidity = $("<h3>").text("Humidity: " + response.main.humidity + "%");
+            var windSpeed = $("<h3>").text("Wind Speed: " + response.wind.speed + " MPH");
             var date = new Date(response.dt * 1000).toLocaleDateString("en-US"); // convert dt to date
 
-            $("#city").append($("<h3>").text(cityName + " (" + date + ")"));
-            $("#city").append(icon);
+            $("#city").append($("<h1>").text(cityName + " (" + date + ")"));
+            $("#icon").append(icon);
             $("#temperature").append(temp);
             $("#humid").append(humidity);
             $("#wind").append(windSpeed);
@@ -33,7 +33,7 @@ $(document).ready(function () {
             })
                 .then(function (response) {
                     var UV = response.value;
-                    var UVel = $("<p>").text("UV Index: " + UV);
+                    var UVel = $("<h3>").text("UV Index: " + UV);
                     $("#uv-index").append(UVel);
                 })
         });
