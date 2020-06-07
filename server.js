@@ -3,6 +3,7 @@ const express = require("express");
 const session = require("express-session");
 // Requiring passport as we've configured it
 let passport = require("./config/passport");
+const compression = require("compression");
 
 
 // Setting up port and requiring models for syncing
@@ -11,6 +12,7 @@ let db = require("./models");
 
 // Creating express app and configuring middleware needed for authentication
 let app = express();
+app.use(compression());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
